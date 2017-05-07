@@ -1,0 +1,405 @@
+{
+  "gdl_version": "0.1",
+  "id": "Diabetes_lipids_lowering_in_type2_diabetes_without_CKD.v0.1",
+  "concept": "gt0001",
+  "language": {
+    "original_language": "ISO_639-1::en"
+  },
+  "description": {
+    "original_author": {
+      "name": "Rong Chen",
+      "organisation": "Cambio Healthcare Systems",
+      "email": ""
+    },
+    "details": {
+      "en": {
+        "id": "en",
+        "purpose": "Sample cds-rules for demonstration purpose",
+        "keywords": [
+          "Diabetes"
+        ]
+      }
+    },
+    "other_details": {
+      "references": "NICE guideline -Cardiovascular disease: risk assessment and reduction, including lipid modification, Chapter 1.3.20-1.3.51,"
+    }
+  },
+  "definition": {
+    "pre_conditions": [
+      "$gt0003!=null",
+      "$gt0006==null"
+    ],
+    "data_bindings": {
+      "gt0010": {
+        "id": "gt0010",
+        "model_id": "openEHR-EHR-INSTRUCTION.medication.v1",
+        "type": "INPUT",
+        "elements": {
+          "gt0011": {
+            "id": "gt0011",
+            "path": "/activities[at0001]/description[openEHR-EHR-ITEM_TREE.medication.v1]/items[at0012]"
+          }
+        },
+        "predicates": [
+          "/activities[at0001]/description[openEHR-EHR-ITEM_TREE.medication.v1]/items[at0012] is_a local::gt0012|Statin|"
+        ]
+      },
+      "gt0022": {
+        "id": "gt0022",
+        "model_id": "openEHR-EHR-INSTRUCTION.medication.v1",
+        "type": "OUTPUT",
+        "elements": {
+          "gt0023": {
+            "id": "gt0023",
+            "path": "/activities[at0001]/description[openEHR-EHR-ITEM_TREE.medication.v1]/items[at0012]"
+          },
+          "gt0024": {
+            "id": "gt0024",
+            "path": "/activities[at0001]/description[openEHR-EHR-ITEM_TREE.medication.v1]/items[at0033]/items[at0035]/items[at0037]"
+          }
+        }
+      },
+      "gt0002": {
+        "id": "gt0002",
+        "model_id": "openEHR-EHR-EVALUATION.problem-diagnosis.v1",
+        "type": "INPUT",
+        "elements": {
+          "gt0003": {
+            "id": "gt0003",
+            "path": "/data[at0001]/items[at0002.1]"
+          }
+        },
+        "predicates": [
+          "/data[at0001]/items[at0002.1] is_a local::gt0004|Type-2 diabetes|"
+        ]
+      },
+      "gt0030": {
+        "id": "gt0030",
+        "model_id": "openEHR-EHR-INSTRUCTION.request.v0",
+        "type": "OUTPUT",
+        "elements": {
+          "gt0032": {
+            "id": "gt0032",
+            "path": "/activities[at0001]/description[at0009]/items[at0135]"
+          },
+          "gt0031": {
+            "id": "gt0031",
+            "path": "/activities[at0001]/description[at0009]/items[at0121]"
+          }
+        }
+      },
+      "gt0008": {
+        "id": "gt0008",
+        "model_id": "openEHR-EHR-OBSERVATION.qrisk2_2015_score.v0",
+        "type": "INPUT",
+        "elements": {
+          "gt0009": {
+            "id": "gt0009",
+            "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0004]"
+          }
+        }
+      },
+      "gt0019": {
+        "id": "gt0019",
+        "model_id": "openEHR-EHR-EVALUATION.problem-diagnosis.v1",
+        "type": "INPUT",
+        "elements": {
+          "gt0020": {
+            "id": "gt0020",
+            "path": "/data[at0001]/items[at0002.1]"
+          }
+        },
+        "predicates": [
+          "/data[at0001]/items[at0002.1] is_a local::gt0021|CVD|"
+        ]
+      },
+      "gt0015": {
+        "id": "gt0015",
+        "model_id": "openEHR-EHR-OBSERVATION.lab_test-lipids.v1",
+        "type": "INPUT",
+        "elements": {
+          "gt0016": {
+            "id": "gt0016",
+            "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0078.2]"
+          }
+        },
+        "predicates": [
+          "max(/data/events/time)"
+        ]
+      },
+      "gt0005": {
+        "id": "gt0005",
+        "model_id": "openEHR-EHR-EVALUATION.problem-diagnosis.v1",
+        "type": "INPUT",
+        "elements": {
+          "gt0006": {
+            "id": "gt0006",
+            "path": "/data[at0001]/items[at0002.1]"
+          }
+        },
+        "predicates": [
+          "/data[at0001]/items[at0002.1] is_a local::gt0007|CKD|"
+        ]
+      },
+      "gt0027": {
+        "id": "gt0027",
+        "model_id": "openEHR-EHR-EVALUATION.goal.v1",
+        "type": "OUTPUT",
+        "elements": {
+          "gt0029": {
+            "id": "gt0029",
+            "path": "/data[at0001]/items[at0002]"
+          }
+        }
+      },
+      "gt0017": {
+        "id": "gt0017",
+        "model_id": "openEHR-EHR-OBSERVATION.lab_test-lipids.v1",
+        "type": "INPUT",
+        "elements": {
+          "gt0018": {
+            "id": "gt0018",
+            "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0078.2]"
+          }
+        },
+        "predicates": [
+          "/data/events/time/value/value<=($currentDateTime.value-3,mo)"
+        ]
+      }
+    },
+    "rules": {
+      "gt0033": {
+        "id": "gt0033",
+        "priority": 5,
+        "when": [
+          "$gt0009==null",
+          "$gt0020==null"
+        ],
+        "then": [
+          "$gt0030.create($gt0031.value='QRISK2';$gt0032.value='Measure and evaluate QRISK2')"
+        ]
+      },
+      "gt0034": {
+        "id": "gt0034",
+        "priority": 2,
+        "when": [
+          "$gt0011!=null",
+          "$gt0009>=10,%",
+          "$gt0020==null",
+          "$gt0016.magnitude>=($gt0018.magnitude*0.6)"
+        ],
+        "then": [
+          "$gt0022.create($gt0023=ATC::C10AA05|Atorvastatin|;$gt0024=80,mg)"
+        ]
+      },
+      "gt0035": {
+        "id": "gt0035",
+        "priority": 1,
+        "when": [
+          "$gt0020==null",
+          "$gt0009>=10,%",
+          "$gt0011!=null",
+          "$gt0016.magnitude<($gt0018.magnitude*0.6)"
+        ],
+        "then": [
+          "$gt0030.create($gt0031.value='Appointment';$gt0032.value='Continue treatment and arrange annual follow-up')"
+        ]
+      },
+      "gt0025": {
+        "id": "gt0025",
+        "priority": 4,
+        "when": [
+          "$gt0011==null",
+          "$gt0020!=null"
+        ],
+        "then": [
+          "$gt0022.create($gt0024=80,mg;$gt0023=ATC::C10AA05|Atorvastatin|)"
+        ]
+      },
+      "gt0026": {
+        "id": "gt0026",
+        "priority": 3,
+        "when": [
+          "$gt0020==null",
+          "$gt0011==null",
+          "$gt0009>10,%"
+        ],
+        "then": [
+          "$gt0030.create($gt0031.value='Appointment';$gt0032.value='Arrange a follow-up within three months')",
+          "$gt0022.create($gt0024=20,mg;$gt0023=ATC::C10AA05|Atorvastatin|)",
+          "$gt0027.create($gt0029.value='Aim 40% reduction in non-HDL cholesterol')"
+        ]
+      }
+    }
+  },
+  "ontology": {
+    "term_definitions": {
+      "en": {
+        "id": "en",
+        "terms": {
+          "gt0007": {
+            "id": "gt0007",
+            "text": "CKD",
+            "description": "Chronic kidney disease"
+          },
+          "gt0018": {
+            "id": "gt0018",
+            "text": "Previous LDL Cholesterol",
+            "description": "LDL-Cholesterol level in the sample."
+          },
+          "gt0029": {
+            "id": "gt0029",
+            "text": "Goal name",
+            "description": "The name of the desired health outcome."
+          },
+          "gt0009": {
+            "id": "gt0009",
+            "text": "QRISK2 score",
+            "description": "QRISK2 score"
+          },
+          "gt0003": {
+            "id": "gt0003",
+            "text": "Type-2 diabetes diagnosis",
+            "description": "The index diagnosis"
+          },
+          "gt0014": {
+            "id": "gt0014",
+            "text": "Estimated Glomerular Filtration Rate",
+            "description": "Value describing estimation of glomerular filtration rate adjusted by body-surface area (mL/min/1.73m²)."
+          },
+          "gt0025": {
+            "id": "gt0025",
+            "text": "Start statin treatment in patient with CVD"
+          },
+          "gt0004": {
+            "id": "gt0004",
+            "text": "Type-2 diabetes"
+          },
+          "gt0026": {
+            "id": "gt0026",
+            "text": "Start statin treatment in patient without CVD"
+          },
+          "gt0016": {
+            "id": "gt0016",
+            "text": "Latest LDL Cholesterol",
+            "description": "LDL-Cholesterol level in the sample."
+          },
+          "gt0006": {
+            "id": "gt0006",
+            "text": "CKD diagnosis",
+            "description": "The index diagnosis"
+          },
+          "gt0028": {
+            "id": "gt0028"
+          },
+          "gt0021": {
+            "id": "gt0021",
+            "text": "CVD",
+            "description": "Chronic vascular disease"
+          },
+          "gt0032": {
+            "id": "gt0032",
+            "text": "Request description",
+            "description": "Narrative description of the service requested."
+          },
+          "gt0011": {
+            "id": "gt0011",
+            "text": "Statin treatment",
+            "description": "The generic name of the drug which is an alternative name to the name of medication"
+          },
+          "gt0033": {
+            "id": "gt0033",
+            "text": "Request QRISK"
+          },
+          "gt0001": {
+            "id": "gt0001",
+            "text": "Diabetes lipids lowering in type 2 diabetes without CKD",
+            "description": "Managing lipids and cardiovascular risk in Type 2 Diabetes patients"
+          },
+          "gt0012": {
+            "id": "gt0012",
+            "text": "Statin"
+          },
+          "gt0023": {
+            "id": "gt0023",
+            "text": "Requested medication generic name",
+            "description": "The generic name of the drug which is an alternative name to the name of medication"
+          },
+          "gt0034": {
+            "id": "gt0034",
+            "text": "Increase statin dose"
+          },
+          "gt0024": {
+            "id": "gt0024",
+            "text": "Requested medication dose",
+            "description": "*"
+          },
+          "gt0035": {
+            "id": "gt0035",
+            "text": "Continue treatment"
+          },
+          "gt0020": {
+            "id": "gt0020",
+            "text": "CVD diagnosis",
+            "description": "The index diagnosis"
+          },
+          "gt0031": {
+            "id": "gt0031",
+            "text": "Requested service name",
+            "description": "Identification of the service requested, by name."
+          }
+        }
+      }
+    },
+    "term_bindings": {
+      "ATC": {
+        "id": "ATC",
+        "bindings": {
+          "gt0012": {
+            "codes": [
+              "ATC::C10AA05"
+            ]
+          }
+        }
+      },
+      "ICD-10": {
+        "id": "ICD-10",
+        "bindings": {
+          "gt0021": {
+            "codes": [
+              "ICD-10::I48.9",
+              "ICD-10::I24.9",
+              "ICD-10::I48.2",
+              "ICD-10::I48.1",
+              "ICD-10::I48.4",
+              "ICD-10::I48.3",
+              "ICD-10::I21.2",
+              "ICD-10::I21.3",
+              "ICD-10::I48.0",
+              "ICD-10::I21.4",
+              "ICD-10::I20.0",
+              "ICD-10::I21.0",
+              "ICD-10::I21.1"
+            ]
+          },
+          "gt0007": {
+            "codes": [
+              "ICD-10::N18.9",
+              "ICD-10::N18.0",
+              "ICD-10::N18.3",
+              "ICD-10::N18.4",
+              "ICD-10::N18.1",
+              "ICD-10::N18.2",
+              "ICD-10::N18.5"
+            ]
+          },
+          "gt0004": {
+            "codes": [
+              "ICD-10::E11"
+            ]
+          }
+        }
+      }
+    }
+  }
+}

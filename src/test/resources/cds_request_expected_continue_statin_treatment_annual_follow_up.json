@@ -1,0 +1,61 @@
+{
+  "diagnoses": [
+    {
+      "diagnosis": {
+        "value": "Type-2 diabetes",
+        "definingCode": {
+          "terminology": "ICD-10",
+          "code": "E11"
+        }
+      },
+      "dateOfInitialOnset": {
+        "dateTime": "2016-01-01T00:00:00"
+      }
+    }
+  ],
+  "qrisk": {
+    "score": {
+      "unit": "%",
+      "magnitude": 12.5,
+      "precision": 1
+    }
+  },
+  "lipidsLabTests": [
+    {
+      "ldlCholesterol": {
+        "unit": "mmol/l",
+        "magnitude": 10.0,
+        "precision": 1
+      },
+      "time": {
+        "dateTime": "2017-01-01T10:00:00"
+      }
+    },
+    {
+      "ldlCholesterol": {
+        "unit": "mmol/l",
+        "magnitude": 5.5,
+        "precision": 1
+      },
+      "time": {
+        "dateTime": "2017-05-02T10:00:00"
+      }
+    }
+  ],
+  "medications": [
+    {
+      "genericName": {
+        "value": "Atorvastatin",
+        "definingCode": {
+          "terminology": "ATC",
+          "code": "C10AA05"
+        }
+      },
+      "dose": {
+        "unit": "mg",
+        "magnitude": 20,
+        "precision": 0
+      }
+    }
+  ]
+}

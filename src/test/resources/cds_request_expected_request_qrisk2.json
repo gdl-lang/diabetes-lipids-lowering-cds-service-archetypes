@@ -1,0 +1,16 @@
+{
+  "diagnoses": [
+    {
+      "diagnosis": {
+        "value": "Type-2 diabetes",
+        "definingCode": {
+          "terminology": "ICD-10",
+          "code": "E11"
+        }
+      },
+      "dateOfInitialOnset": {
+        "dateTime": "2016-01-01T00:00:00"
+      }
+    }
+  ]
+}

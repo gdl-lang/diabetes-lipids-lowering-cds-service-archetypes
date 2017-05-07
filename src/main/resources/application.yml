@@ -1,0 +1,2 @@
+server:
+  context-path: /diabetes-lipids-lowering-cds-service-archetypes
